@@ -1,0 +1,4 @@
+python-telegram-bot
+bs4
+time
+requests
