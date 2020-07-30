@@ -44,7 +44,8 @@ def start(update, context):
                                         
 
 def main():
-    updater = Updater("1228450448:AAFHUo007qvKiv8ArZjPeMc3sxm91lMMLuU", use_context = True)
+    bot_token=os.environ.get("BOT_TOKEN","")
+    updater = Updater(bot_token , use_context = True)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler('start',start))
     updater.start_polling()
