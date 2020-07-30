@@ -1,6 +1,7 @@
 import requests
 import time
 import os
+import lxml
 from telegram import ParseMode
 from bs4 import BeautifulSoup
 from telegram.ext import Updater, CommandHandler
