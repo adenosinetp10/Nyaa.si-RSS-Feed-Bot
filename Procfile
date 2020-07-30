@@ -1,1 +1,1 @@
-worker :python RSSscrap.py
+worker: python3 RSSscrap.py
