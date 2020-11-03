@@ -52,8 +52,7 @@ def start(update, context):
         pass
     
 def test(update,context):
-    if update.effective_message.text == 'test':
-        update.effective_message.reply_text("hello")
+    update.effective_message.reply_text("hello")
 
 def main():
     bot_token=os.environ.get("BOT_TOKEN","")
