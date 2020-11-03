@@ -59,7 +59,7 @@ def main():
     updater = Updater(bot_token , use_context = True)
     dp = updater.dispatcher
     dp.add_handler(MessageHandler(Filters.text,start,run_async = True))
-    dp.add_handler(MessageHandler(Filters.text,test,run_async = True))
+    dp.add_handler(MessageHandler(Filters.update.channel_post,test,run_async = True))
     updater.start_polling()
     updater.idle()
 
