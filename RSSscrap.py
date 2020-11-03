@@ -52,20 +52,22 @@ def start(update, context):
     
 def test(update,context):
     user = update.message.from_user
+    text = update.message.text
     userID = user['id']
-    if userID != ADMIN_ID:
-        update.message.reply_text("Auth Denied.")
-        pass
-    else:
-        update.message.reply_text("Authorized.")
-        return
+    if text == 'test':
+        if userID != ADMIN_ID:
+            update.message.reply_text("Auth Denied.")
+            pass
+        else:
+            update.message.reply_text("Authorized.")
+            return
 
 def main():
     bot_token=os.environ.get("BOT_TOKEN","")
     updater = Updater(bot_token , use_context = True)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler('start',start,run_async = True))
-    dp.add_handler(CommandHandler('test',test,run_async = True))
+    dp.add_handler(MessageHandler(Filters.text,test,run_async = True))
     updater.start_polling()
     updater.idle()
 
