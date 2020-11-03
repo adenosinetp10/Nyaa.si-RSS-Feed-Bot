@@ -9,6 +9,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 url = 'https://nyaa.si/?page=rss'
 ADMIN_ID = 900986950
+CHANNEL_ID = -1001340269031
 
 
 def start(update, context):
@@ -51,16 +52,12 @@ def start(update, context):
             return
     
 def test(update,context):
-    user = update.message.from_user
-    text = update.message.text
-    userID = user['id']
-    if text == 'test':
-        if userID != ADMIN_ID:
-            update.message.reply_text("Auth Denied.")
-            pass
-        else:
-            update.message.reply_text("Authorized.")
-            return
+    
+    if update.effective_chat.id != CHANNEL_ID:
+        update.effective_message.reply_text("un auth",quote=False)
+    else:
+        update.effective_message.reply_text("Auth",quote=False)
+    
 
 def main():
     bot_token=os.environ.get("BOT_TOKEN","")
