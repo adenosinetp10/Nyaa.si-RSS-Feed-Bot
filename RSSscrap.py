@@ -52,14 +52,18 @@ def start(update, context):
         pass
     
 def test(update,context):
-    update.effective_message.reply_text("hello")
+    if update.effective_message.text == 'test':
+        if update.effective_chat.id != CHANNEL_ID:
+            pass
+        else:
+            update.effective_message.reply_text("hello",quote=False)
 
 def main():
     bot_token=os.environ.get("BOT_TOKEN","")
     updater = Updater(bot_token , use_context = True)
     dp = updater.dispatcher
     dp.add_handler(MessageHandler(Filters.text,start,run_async = True))
-    dp.add_handler(MessageHandler(Filters.update.channel_post,test,run_async = True))
+    dp.add_handler(MessageHandler(Filters.text,test,run_async = True))
     updater.start_polling()
     updater.idle()
 
