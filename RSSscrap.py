@@ -53,12 +53,7 @@ def start(update, context):
     
 def test(update,context):
     if update.effective_message.text == 'test':
-        if update.effective_chat.id != CHANNEL_ID:
-            update.effective_message.reply_text("AUTH : fail",quote=False)
-        else:
-            update.effective_message.reply_text("AUTH : success",quote=False)
-    else:
-        pass
+        update.effective_message.reply_text("hello")
 
 def main():
     bot_token=os.environ.get("BOT_TOKEN","")
