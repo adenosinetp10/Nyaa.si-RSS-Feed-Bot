@@ -4,7 +4,7 @@ import os
 import lxml
 from telegram import ParseMode
 from bs4 import BeautifulSoup
-from telegram.ext import Updater, CommandHandler, MessageHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 url = 'https://nyaa.si/?page=rss'
