@@ -65,7 +65,7 @@ def main():
     updater = Updater(bot_token , use_context = True)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler('start',start,run_async = True))
-    dp.add_handler(CommandHandler('test',test,run_async = True)
+    dp.add_handler(CommandHandler('test',test,run_async = True))
     updater.start_polling()
     updater.idle()
 
