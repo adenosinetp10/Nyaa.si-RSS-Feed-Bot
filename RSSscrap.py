@@ -50,13 +50,22 @@ def start(update, context):
             update.message.reply_text("<b>Name : <pre>%s</pre></b>\n<b>Category :</b> <pre>%s</pre>\n<b>Size :</b> <pre>%s</pre>\n<b>Publish Date :</b> <pre>%s</pre>\n<b>Magnet Link :</b> <pre>magnet:?xt=urn:btih:%s</pre>"%(spec_title, spec_category, spec_size, spec_date.replace("-0000","GMT"),spec_hash),parse_mode = 'HTML', reply_markup = reply_markup1)
         return
     
-
+def test(update,context):
+    user = update.message.from_user
+    userID = user['id']
+    if userID != ADMIN_ID:
+        update.message.reply_text("Auth Denied.")
+        pass
+    else:
+        update.message.reply_text("Authorized.")
+        return
 
 def main():
     bot_token=os.environ.get("BOT_TOKEN","")
     updater = Updater(bot_token , use_context = True)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler('start',start,run_async = True))
+    dp.add_handler(CommandHandler('test',test,run_async = True)
     updater.start_polling()
     updater.idle()
 
