@@ -8,14 +8,12 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 url = 'https://nyaa.si/?page=rss'
-ADMIN_ID = 900986950
 CHANNEL_ID = -1001340269031
 
 
 def start(update, context):
-    user = update.message.from_user
-    userID = user['id']
-    if userID != ADMIN_ID:
+    
+    if update.effective_chat.id != CHANNEL_ID:
         pass
     else:
         nyaa_id1=""
@@ -48,7 +46,7 @@ def start(update, context):
                             ]
                 reply_markup1 = InlineKeyboardMarkup(keyboard)
 
-                update.message.reply_text("<b>Name : <pre>%s</pre></b>\n<b>Category :</b> <pre>%s</pre>\n<b>Size :</b> <pre>%s</pre>\n<b>Publish Date :</b> <pre>%s</pre>\n<b>Magnet Link :</b> <pre>magnet:?xt=urn:btih:%s</pre>"%(spec_title, spec_category, spec_size, spec_date.replace("-0000","GMT"),spec_hash),parse_mode = 'HTML', reply_markup = reply_markup1)
+                update.effective_message.reply_text("<b>Name : <pre>%s</pre></b>\n<b>Category :</b> <pre>%s</pre>\n<b>Size :</b> <pre>%s</pre>\n<b>Publish Date :</b> <pre>%s</pre>\n<b>Magnet Link :</b> <pre>magnet:?xt=urn:btih:%s</pre>"%(spec_title, spec_category, spec_size, spec_date.replace("-0000","GMT"),spec_hash),parse_mode = 'HTML', reply_markup = reply_markup1,quote = False)
             return
     
 def test(update,context):
