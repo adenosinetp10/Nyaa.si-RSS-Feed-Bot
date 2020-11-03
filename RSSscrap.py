@@ -8,11 +8,16 @@ from telegram.ext import Updater, CommandHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 url = 'https://nyaa.si/?page=rss'
-
+ADMIN_ID = 900986950
 
 
 def start(update, context):
-    nyaa_id1=""
+    user = update.message.from_user
+    userID = user['id']
+    if userID != ADMIN_ID:
+        pass
+    else:
+        nyaa_id1=""
     while True:
         time.sleep(5)
         r = requests.get(url)
@@ -43,16 +48,15 @@ def start(update, context):
             reply_markup1 = InlineKeyboardMarkup(keyboard)
 
             update.message.reply_text("<b>Name : <pre>%s</pre></b>\n<b>Category :</b> <pre>%s</pre>\n<b>Size :</b> <pre>%s</pre>\n<b>Publish Date :</b> <pre>%s</pre>\n<b>Magnet Link :</b> <pre>magnet:?xt=urn:btih:%s</pre>"%(spec_title, spec_category, spec_size, spec_date.replace("-0000","GMT"),spec_hash),parse_mode = 'HTML', reply_markup = reply_markup1)
-            
-def help(update,context):
-    update.message.reply_text("help meeee")
+        return
+    
+
 
 def main():
     bot_token=os.environ.get("BOT_TOKEN","")
     updater = Updater(bot_token , use_context = True)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler('start',start,run_async = True))
-    dp.add_handler(CommandHandler('help',help,run_async = True))
     updater.start_polling()
     updater.idle()
 
