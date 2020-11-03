@@ -51,8 +51,8 @@ def start(update, context):
     else:
         pass
     
-def test(update,context):
-    if update.effective_message.text == 'test':
+def bruh(update,context):
+    if update.effective_message.text == 'bruh':
         if update.effective_chat.id != CHANNEL_ID:
             pass
         else:
@@ -63,7 +63,7 @@ def main():
     updater = Updater(bot_token , use_context = True)
     dp = updater.dispatcher
     dp.add_handler(MessageHandler(Filters.text,start,run_async = True))
-    dp.add_handler(MessageHandler(Filters.text,test,run_async = True))
+    dp.add_handler(MessageHandler(Filters.text,bruh,run_async = True))
     updater.start_polling()
     updater.idle()
 
