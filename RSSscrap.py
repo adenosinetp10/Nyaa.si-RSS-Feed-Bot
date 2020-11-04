@@ -14,14 +14,15 @@ CHANNEL_ID = -1001340269031
 
 def start(update:Update, context):
     nyaa_id1 = ""
-    print("going on 0.")
+    iterCount = 1
+    print("Iteration(s) : {}".format(iterCount))
     while True:
-        print("going on 1.")
-        randomSleep = random.randint(5,10)
+        print("Implementation of Random Requests...")
+        randomSleep = random.randint(5,6)
         time.sleep(randomSleep)
-        print(randomSleep)
+        print("Request Sleep time : {}".format(randomSleep))
         r = requests.get(url)
-        print("going on 2.")
+        print("Nyaa.si URL Loaded...")
         soup = BeautifulSoup(r.content,features='xml')
         all_title = soup.findAll("title")
         all_download = soup.findAll("link")
@@ -30,7 +31,7 @@ def start(update:Update, context):
         all_date = soup.findAll("pubDate")
         all_size = soup.findAll("nyaa:size")
         all_category = soup.findAll("nyaa:category")
-        print("going on 3.")
+        print("Scrapping...")
         spec_title = all_title[1].text
         spec_download = all_download[2].text
         spec_view = all_view[0].text
@@ -39,11 +40,11 @@ def start(update:Update, context):
         spec_category = all_category[0].text
         spec_hash = all_hash[0].text
         nyaa_id = nyaa_id1
-        print("going on 4.")
+        print("Scrapped Data Loaded to Variables...")
         if (nyaa_id!=spec_view):
             nyaa_id = spec_view
             nyaa_id1 = nyaa_id
-            print("going on 5.")
+            print("Finishing up...")
             keyboard = [
             [
             InlineKeyboardButton("More Info",url = str(spec_view)),
@@ -52,7 +53,8 @@ def start(update:Update, context):
             reply_markup1 = InlineKeyboardMarkup(keyboard)
 
             update.effective_message.reply_text("<b>Name : <pre>%s</pre></b>\n<b>Category :</b> <pre>%s</pre>\n<b>Size :</b> <pre>%s</pre>\n<b>Publish Date :</b> <pre>%s</pre>\n<b>Magnet Link :</b> <pre>magnet:?xt=urn:btih:%s</pre>"%(spec_title, spec_category, spec_size, spec_date.replace("-0000","GMT"),spec_hash),parse_mode = 'HTML', reply_markup = reply_markup1,quote = False)
-            print("going on 6.")
+            print("End of Iteration : {}".format(iterCount))
+            iterCount+=1
     
 def bruh(update:Update,context):
     if update.effective_message.text == 'bruh':
