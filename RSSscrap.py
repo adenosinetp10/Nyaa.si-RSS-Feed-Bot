@@ -53,10 +53,10 @@ def start(update, context):
     
 def bruh(update,context):
     if update.effective_message.text == 'bruh':
-        if update.effective_chat.id != CHANNEL_ID:
-            pass
-        else:
-            update.effective_message.reply_text("hello",quote=False)
+        update.effective_message.reply_text("hello",quote=False)
+          
+       
+            
 
 def main():
     bot_token=os.environ.get("BOT_TOKEN","")
