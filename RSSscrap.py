@@ -16,7 +16,9 @@ def start(update:Update, context):
     nyaa_id1 = ""
     iterCount = 1
     while True:
+        print("--------------------")
         print("Iteration(s) : {}".format(iterCount))
+        print("--------------------")
         print("Implementation of Random Requests...")
         randomSleep = random.randint(5,6)
         time.sleep(randomSleep)
