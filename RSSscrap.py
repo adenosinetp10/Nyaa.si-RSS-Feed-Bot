@@ -15,8 +15,8 @@ CHANNEL_ID = -1001340269031
 def start(update:Update, context):
     nyaa_id1 = ""
     iterCount = 1
-    print("Iteration(s) : {}".format(iterCount))
     while True:
+        print("Iteration(s) : {}".format(iterCount))
         print("Implementation of Random Requests...")
         randomSleep = random.randint(5,6)
         time.sleep(randomSleep)
@@ -40,11 +40,16 @@ def start(update:Update, context):
         spec_category = all_category[0].text
         spec_hash = all_hash[0].text
         nyaa_id = nyaa_id1
+        print("Finishing up...")
+        print("End of Iteration : {}".format(iterCount))
+        iterCount+=1
         print("Scrapped Data Loaded to Variables...")
         if (nyaa_id!=spec_view):
             nyaa_id = spec_view
             nyaa_id1 = nyaa_id
             print("Finishing up...")
+            print("End of Iteration : {}".format(iterCount))
+            iterCount+=1
             keyboard = [
             [
             InlineKeyboardButton("More Info",url = str(spec_view)),
@@ -53,8 +58,8 @@ def start(update:Update, context):
             reply_markup1 = InlineKeyboardMarkup(keyboard)
 
             update.effective_message.reply_text("<b>Name : <pre>%s</pre></b>\n<b>Category :</b> <pre>%s</pre>\n<b>Size :</b> <pre>%s</pre>\n<b>Publish Date :</b> <pre>%s</pre>\n<b>Magnet Link :</b> <pre>magnet:?xt=urn:btih:%s</pre>"%(spec_title, spec_category, spec_size, spec_date.replace("-0000","GMT"),spec_hash),parse_mode = 'HTML', reply_markup = reply_markup1,quote = False)
-            print("End of Iteration : {}".format(iterCount))
-            iterCount+=1
+            
+            
     
 def bruh(update:Update,context):
     if update.effective_message.text == 'bruh':
