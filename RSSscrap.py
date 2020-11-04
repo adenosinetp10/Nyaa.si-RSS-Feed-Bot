@@ -2,7 +2,7 @@ import requests
 import time
 import os
 import lxml
-from telegram import ParseMode
+from telegram import ParseMode,Update
 from bs4 import BeautifulSoup
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
@@ -11,7 +11,7 @@ url = 'https://nyaa.si/?page=rss'
 CHANNEL_ID = -1001340269031
 
 
-def start(update, context):
+def start(update:Update, context):
     if update.effective_message.text == 'start':
         if update.effective_chat.id != CHANNEL_ID:
             pass
@@ -51,7 +51,7 @@ def start(update, context):
     else:
         pass
     
-def bruh(update,context):
+def bruh(update:Update,context):
     if update.effective_message.text == 'bruh':
         update.effective_message.reply_text("hello",quote=False)
           
